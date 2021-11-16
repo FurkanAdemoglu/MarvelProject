@@ -23,38 +23,7 @@ interface APIService {
                               @Query("limit") limit: Int): Response<CharacterResponse>
 
 
-    companion object {
-        fun getService(): APIService {
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
 
-            val httpClient = OkHttpClient.Builder()
-            httpClient.addInterceptor(logging)
-            httpClient.addInterceptor { chain ->
-                val original = chain.request()
-                val originalHttpUrl = original.url
-
-                val ts = (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
-                val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apikey", PUBLIC_API_KEY)
-                    .addQueryParameter("ts", ts)
-                    .addQueryParameter("hash", "$ts$PRIVATE_KEY$PUBLIC_API_KEY".md5())
-                    .build()
-
-                chain.proceed(original.newBuilder().url(url).build())
-            }
-
-            val gson = GsonBuilder().setLenient().create()
-            val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(httpClient.build())
-                .build()
-
-            return retrofit.create<APIService>(APIService::class.java)
-        }
-    }
 
  /*   @GET(value = "characters/{character_id}/comics")
     suspend fun getComics(@Path("character_id") character_id: Int,
