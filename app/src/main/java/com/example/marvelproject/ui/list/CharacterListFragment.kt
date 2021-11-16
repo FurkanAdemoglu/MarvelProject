@@ -10,6 +10,7 @@ import android.widget.AbsListView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelproject.Base.BaseFragment
@@ -52,6 +53,7 @@ class CharacterListFragment :
                             it.description,
                             it.characterId
                         )
+                        findNavController().navigate(action)
                     }
                     response.data?.let {characterResponse->
                         characterListAdapter.differ.submitList(characterResponse.data.results)

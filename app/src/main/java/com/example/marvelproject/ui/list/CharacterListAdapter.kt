@@ -44,6 +44,9 @@ class CharacterListAdapter: RecyclerView.Adapter<CharacterListAdapter.CharacterV
                 .load("${character?.thumbnail?.path}.${character?.thumbnail?.extension}")
                 .into(imageView)
             characterName.text=character.name
+            setOnClickListener {
+                onItemClickListener?.let { it(character) }
+            }
         }
     }
 
