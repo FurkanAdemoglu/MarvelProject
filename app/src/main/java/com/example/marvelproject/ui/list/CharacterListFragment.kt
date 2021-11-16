@@ -45,6 +45,14 @@ class CharacterListFragment :
                     hideProgressBar()
                     binding.movieRecyclerView.show()
                     Log.v("Data","${response.data}")
+                    characterListAdapter.setOnItemClickListener {
+                        val action=CharacterListFragmentDirections.actionCharacterListFragmentToDetailFragment(
+                        it.thumbnail.path+"."+it.thumbnail.extension,
+                            it.name,
+                            it.description,
+                            it.characterId
+                        )
+                    }
                     response.data?.let {characterResponse->
                         characterListAdapter.differ.submitList(characterResponse.data.results)
                     }

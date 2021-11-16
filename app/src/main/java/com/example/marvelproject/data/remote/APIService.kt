@@ -1,6 +1,7 @@
 package com.example.marvelproject.data.remote
 
 import com.example.marvelproject.data.entity.CharacterResponse
+import com.example.marvelproject.data.entity.Comics
 import com.example.marvelproject.utils.Constants.BASE_URL
 import com.example.marvelproject.utils.Constants.PUBLIC_API_KEY
 import com.example.marvelproject.utils.md5
@@ -25,10 +26,9 @@ interface APIService {
 
 
 
- /*   @GET(value = "characters/{character_id}/comics")
+@GET(value = "characters/{character_id}/comics")
     suspend fun getComics(@Path("character_id") character_id: Int,
-
                           @Query("startYear") startYear: Int,
                           @Query("limit") limit: Int,
-                          @Query("orderBy") orderBy: String): Comics*/
+                          @Query("orderBy") orderBy: String):Response<Comics>
 }
