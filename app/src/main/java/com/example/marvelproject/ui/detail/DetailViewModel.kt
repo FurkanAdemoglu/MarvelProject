@@ -12,8 +12,13 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     var apiRepository: ApiRepository
-):ViewModel() {
-    fun getComics(id: Int,startYear:Int,limit: Int,orderBy:String): LiveData<Resource<Comics>> {
-        return apiRepository.getComics(id,startYear,limit,orderBy)
+) : ViewModel() {
+    fun getComics(
+        id: Int,
+        startYear: Int,
+        limit: Int,
+        orderBy: String
+    ): LiveData<Resource<Comics>> {
+        return apiRepository.getComics(id, startYear, limit, orderBy)
     }
 }

@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CharacterListViewModel @Inject constructor(
     var apiRepository: ApiRepository
-) : ViewModel(){
+) : ViewModel() {
     fun getCharacters(offset: Int, page: Int): LiveData<Resource<CharacterResponse>> {
         return apiRepository.getCharacters(offset, page)
     }

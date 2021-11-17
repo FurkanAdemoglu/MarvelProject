@@ -7,10 +7,10 @@ class RemoteDataSource @Inject constructor(
     private val apiService: APIService
 ) : BaseDataSource() {
     suspend fun getCharacters(offset: Int, limit: Int) = getResult {
-        apiService.getCharacters(offset , limit)
+        apiService.getCharacters(offset, limit)
     }
 
-    suspend fun getComics(id: Int,startYear:Int,limit: Int,orderBy:String) = getResult {
-        apiService.getComics(id,startYear,limit,orderBy)
+    suspend fun getComics(id: Int, startYear: Int, limit: Int, orderBy: String) = getResult {
+        apiService.getComics(id, startYear, limit, orderBy)
     }
 }

@@ -21,4 +21,4 @@ data class CharacterResults(
 
     @SerializedName("comics")
     val comics: Comics,
-    )
+)

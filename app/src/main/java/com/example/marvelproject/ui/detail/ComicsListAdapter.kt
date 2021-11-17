@@ -14,19 +14,19 @@ import com.example.marvelproject.data.entity.Item
 import com.example.marvelproject.ui.list.CharacterListAdapter
 import kotlinx.android.synthetic.main.item_character.view.*
 
-class ComicsListAdapter: RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolder>() {
-    inner class ComicsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+class ComicsListAdapter : RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolder>() {
+    inner class ComicsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private val differCallback=object : DiffUtil.ItemCallback<Item>(){
+    private val differCallback = object : DiffUtil.ItemCallback<Item>() {
         override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-            return oldItem.name==newItem.name
+            return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
-            return oldItem==newItem
+            return oldItem == newItem
         }
     }
-    val differ= AsyncListDiffer(this,differCallback)
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicsViewHolder {
         return ComicsViewHolder(
@@ -39,12 +39,12 @@ class ComicsListAdapter: RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolder
     }
 
     override fun onBindViewHolder(holder: ComicsViewHolder, position: Int) {
-        val comics=differ.currentList[position]
+        val comics = differ.currentList[position]
         holder.itemView.apply {
             /*Glide.with(this)
                 .load("${comics?.thumbnail?.path}.${comics?.thumbnail?.extension}")
                 .into(imageView)*/
-            characterName.text=comics.name
+            characterName.text = comics.name
             setOnClickListener {
                 onItemClickListener?.let { it(comics) }
             }
@@ -55,9 +55,9 @@ class ComicsListAdapter: RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolder
         return differ.currentList.size
     }
 
-    private var onItemClickListener:((Item)->Unit)?=null
+    private var onItemClickListener: ((Item) -> Unit)? = null
 
-    fun setOnItemClickListener(listener:(Item)->Unit){
-        onItemClickListener=listener
+    fun setOnItemClickListener(listener: (Item) -> Unit) {
+        onItemClickListener = listener
     }
 }

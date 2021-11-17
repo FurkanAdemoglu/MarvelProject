@@ -20,15 +20,17 @@ import javax.crypto.Cipher.PRIVATE_KEY
 interface APIService {
 
     @GET(value = "characters")
-    suspend fun getCharacters(@Query("offset") offset: Int,
-                              @Query("limit") limit: Int): Response<CharacterResponse>
+    suspend fun getCharacters(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): Response<CharacterResponse>
 
 
-
-
-@GET(value = "characters/{character_id}/comics")
-    suspend fun getComics(@Path("character_id") character_id: Int,
-                          @Query("startYear") startYear: Int,
-                          @Query("limit") limit: Int,
-                          @Query("orderBy") orderBy: String):Response<Comics>
+    @GET(value = "characters/{character_id}/comics")
+    suspend fun getComics(
+        @Path("character_id") character_id: Int,
+        @Query("startYear") startYear: Int,
+        @Query("limit") limit: Int,
+        @Query("orderBy") orderBy: String
+    ): Response<Comics>
 }
