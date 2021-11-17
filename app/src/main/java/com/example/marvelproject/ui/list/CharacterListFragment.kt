@@ -29,14 +29,14 @@ class CharacterListFragment :
 
     private val viewModel: CharacterListViewModel by viewModels()
     private val characterListAdapter: CharacterListAdapter = CharacterListAdapter()
-
+     var page=30
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getCharacterApi()
+        getCharacterApi(0,page)
         initViews()
     }
 
-    private fun getCharacterApi(offset:Int=0,page:Int=60){
+    private fun getCharacterApi(offset:Int,page:Int){
         viewModel.getCharacters(offset,page).observe(viewLifecycleOwner,{response->
             when(response.status){
                 Resource.Status.LOADING->{
@@ -45,7 +45,6 @@ class CharacterListFragment :
                 Resource.Status.SUCCESS->{
                     hideProgressBar()
                     binding.movieRecyclerView.show()
-                    Log.v("Data","${response.data}")
                     characterListAdapter.setOnItemClickListener {
                         val action=CharacterListFragmentDirections.actionCharacterListFragmentToDetailFragment(
                         it.thumbnail.path+"."+it.thumbnail.extension,
@@ -57,6 +56,8 @@ class CharacterListFragment :
                     }
                     response.data?.let {characterResponse->
                         characterListAdapter.differ.submitList(characterResponse.data.results)
+                        val totalPages=characterResponse.data.total/ QUERY_PAGE_SIZE+2
+
                     }
                 }
                 Resource.Status.ERROR->{
@@ -109,7 +110,8 @@ class CharacterListFragment :
             val shouldPaginate=isNotLoadingAndNotLastPage&& isAtLastItem &&isNotAtBeginning
                     && isTotalMoreThanVisible && isScrolling
             if(shouldPaginate){
-                viewModel.getCharacters(1,1)
+                page+=30
+                getCharacterApi(0,page)
                 isScrolling=false
             }
         }
@@ -119,6 +121,7 @@ class CharacterListFragment :
         binding.movieRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.movieRecyclerView.adapter = characterListAdapter
+        binding.movieRecyclerView.addOnScrollListener(this@CharacterListFragment.scrollListener)
     }
 
 }
