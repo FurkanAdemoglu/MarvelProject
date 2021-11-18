@@ -21,8 +21,8 @@ interface APIService {
     @GET(value = "characters/{characterId}/comics")
     suspend fun getComics(
         @Path("characterId") characterId: Int,
-       @Query("startYear") startYear: Int,
-        @Query("limit") limit: Int= Constants.COMICS_LIMIT,
-        @Query("orderBy") orderBy: String=Constants.COMICS_ORDER_BY
+        @Query("startYear") startYear: Int,
+        @Query("limit") limit: Int = Constants.COMICS_LIMIT,
+        @Query("orderBy") orderBy: String = Constants.COMICS_ORDER_BY
     ): Response<ComicsModel>
 }

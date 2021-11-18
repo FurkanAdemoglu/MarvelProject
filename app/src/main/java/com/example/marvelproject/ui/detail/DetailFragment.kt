@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.item_character.view.*
 class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding::inflate) {
 
     private val args: DetailFragmentArgs by navArgs()
-    private val viewModel:DetailViewModel by viewModels()
+    private val viewModel: DetailViewModel by viewModels()
     private val comicsListAdapter: ComicsListAdapter = ComicsListAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,33 +35,39 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
         initViews()
 
     }
-    private fun getComics(characterId:Int=args.characterId,startYear:Int=2005,limit:Int=10,orderBy:String="onsaleDate"){
-        viewModel.getComics(characterId,startYear).observe(viewLifecycleOwner,{response->
-            when(response.status){
-                Resource.Status.LOADING->{
+
+    private fun getComics(
+        characterId: Int = args.characterId,
+        startYear: Int = 2005,
+    ) {
+        viewModel.getComics(characterId, startYear).observe(viewLifecycleOwner, { response ->
+            when (response.status) {
+                Resource.Status.LOADING -> {
                     showProgressBar()
                 }
-                Resource.Status.SUCCESS->{
+                Resource.Status.SUCCESS -> {
                     hideProgressBar()
                     binding.comicsRecyclerView.show()
-                    Log.v("ComicsData","${response.data}")
-                    response.data?.let {comics->
+                    Log.v("ComicsData", "${response.data}")
+                    response.data?.let { comics ->
                         comicsListAdapter.differ.submitList(comics.data.results)
                     }
                 }
-                Resource.Status.ERROR->{
+                Resource.Status.ERROR -> {
                     hideProgressBar()
-                    response.message?.let {message->
-                        Log.v("Errormessage","$message")
-                        Toast.makeText(activity, "An error occurred:$message", Toast.LENGTH_SHORT).show()
+                    response.message?.let { message ->
+                        Log.v("Errormessage", "$message")
+                        Toast.makeText(activity, "An error occurred:$message", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
         })
     }
-    private fun initViews(){
-        binding.characterDescription.text=args.characterDescription
-        binding.characterName.text=args.characterName
+
+    private fun initViews() {
+        binding.characterDescription.text = args.characterDescription
+        binding.characterName.text = args.characterName
         Glide.with(this)
             .load(args.image)
             .into(binding.imageView)
@@ -69,16 +75,18 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.comicsRecyclerView.adapter = comicsListAdapter
     }
-    private fun hideProgressBar(){
-        binding.progressBar.visibility=View.INVISIBLE
-        isLoading=false
-    }
-    var isLoading=false
-    var isLastPage=false
-    var isScrolling=false
 
-    private fun showProgressBar(){
-        binding.progressBar.visibility=View.VISIBLE
-        isLoading=true
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.INVISIBLE
+        isLoading = false
+    }
+
+    var isLoading = false
+    var isLastPage = false
+    var isScrolling = false
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+        isLoading = true
     }
 }

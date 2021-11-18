@@ -18,4 +18,4 @@ data class CharacterResults(
     var thumbnail: CharacterThumbnail,
 
 
-)
+    )

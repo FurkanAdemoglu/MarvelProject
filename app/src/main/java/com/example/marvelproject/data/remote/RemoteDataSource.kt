@@ -10,7 +10,7 @@ class RemoteDataSource @Inject constructor(
         apiService.getCharacters(offset, limit)
     }
 
-    suspend fun getComics(id: Int,startYear:Int=2005) = getResult {
-        apiService.getComics(id,startYear)
+    suspend fun getComics(id: Int, startYear: Int = 2005) = getResult {
+        apiService.getComics(id, startYear)
     }
 }

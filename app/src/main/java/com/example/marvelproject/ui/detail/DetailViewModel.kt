@@ -15,8 +15,8 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
     fun getComics(
         id: Int,
-        startYear:Int
+        startYear: Int
     ): LiveData<Resource<ComicsModel>> {
-        return apiRepository.getComics(id,startYear)
+        return apiRepository.getComics(id, startYear)
     }
 }
