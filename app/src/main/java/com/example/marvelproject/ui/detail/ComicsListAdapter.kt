@@ -8,11 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvelproject.R
-import com.example.marvelproject.data.entity.CharacterResults
-
 import com.example.marvelproject.data.entity.comics.ComicsResults
-import com.example.marvelproject.ui.list.CharacterListAdapter
-import kotlinx.android.synthetic.main.item_character.view.*
 import kotlinx.android.synthetic.main.item_comics.view.*
 
 class ComicsListAdapter : RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolder>() {

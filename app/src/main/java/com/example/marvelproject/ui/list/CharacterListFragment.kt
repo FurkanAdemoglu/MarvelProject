@@ -55,17 +55,10 @@ class CharacterListFragment :
                     }
                     response.data?.let { characterResponse ->
                         characterListAdapter.differ.submitList(characterResponse.data.results)
-                        val totalPages = characterResponse.data.total / QUERY_PAGE_SIZE + 2
-
                     }
                 }
                 Resource.Status.ERROR -> {
                     hideProgressBar()
-                    response.message?.let { message ->
-                        Log.v("Errormessage", "$message")
-                        Toast.makeText(activity, "An error occurred:$message", Toast.LENGTH_SHORT)
-                            .show()
-                    }
                 }
             }
         })

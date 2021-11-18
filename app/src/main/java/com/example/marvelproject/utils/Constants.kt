@@ -9,6 +9,5 @@ object Constants {
     const val QUERY_PAGE_SIZE = 20
 
     const val COMICS_LIMIT = 10
-    const val COMICS_START_DATE = "2005-01-01"
     const val COMICS_ORDER_BY = "-onsaleDate"
 }

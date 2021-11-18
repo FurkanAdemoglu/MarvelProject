@@ -33,7 +33,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
         super.onViewCreated(view, savedInstanceState)
         getComics()
         initViews()
-
     }
 
     private fun getComics(
@@ -48,18 +47,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                 Resource.Status.SUCCESS -> {
                     hideProgressBar()
                     binding.comicsRecyclerView.show()
-                    Log.v("ComicsData", "${response.data}")
                     response.data?.let { comics ->
                         comicsListAdapter.differ.submitList(comics.data.results)
                     }
                 }
                 Resource.Status.ERROR -> {
                     hideProgressBar()
-                    response.message?.let { message ->
-                        Log.v("Errormessage", "$message")
-                        Toast.makeText(activity, "An error occurred:$message", Toast.LENGTH_SHORT)
-                            .show()
-                    }
                 }
             }
         })
@@ -82,9 +75,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
     }
 
     var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
-
     private fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
         isLoading = true
