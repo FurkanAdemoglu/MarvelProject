@@ -1,5 +1,6 @@
-package com.example.marvelproject.data.entity
+package com.example.marvelproject.data.entity.characters
 
+import com.example.marvelproject.data.entity.CharacterResults
 import com.google.gson.annotations.SerializedName
 
 data class CharacterData(

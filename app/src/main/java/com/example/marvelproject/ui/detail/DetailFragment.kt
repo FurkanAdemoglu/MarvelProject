@@ -36,7 +36,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
 
     }
     private fun getComics(characterId:Int=args.characterId,startYear:Int=2005,limit:Int=10,orderBy:String="onsaleDate"){
-        viewModel.getComics(characterId,startYear,limit,orderBy).observe(viewLifecycleOwner,{response->
+        viewModel.getComics(characterId,startYear).observe(viewLifecycleOwner,{response->
             when(response.status){
                 Resource.Status.LOADING->{
                     showProgressBar()
@@ -46,7 +46,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
                     binding.comicsRecyclerView.show()
                     Log.v("ComicsData","${response.data}")
                     response.data?.let {comics->
-                        comicsListAdapter.differ.submitList(comics.items)
+                        comicsListAdapter.differ.submitList(comics.data.results)
                     }
                 }
                 Resource.Status.ERROR->{

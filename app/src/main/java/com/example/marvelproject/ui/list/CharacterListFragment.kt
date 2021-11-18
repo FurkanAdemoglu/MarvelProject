@@ -18,8 +18,6 @@ import com.example.marvelproject.R
 import com.example.marvelproject.databinding.FragmentCharacterListBinding
 import com.example.marvelproject.utils.Constants.QUERY_PAGE_SIZE
 import com.example.marvelproject.utils.Resource
-import com.example.marvelproject.utils.gone
-import com.example.marvelproject.utils.hideKeyboard
 import com.example.marvelproject.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 

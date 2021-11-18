@@ -11,8 +11,8 @@ class ApiRepository @Inject constructor(
         remoteDataSource.getCharacters(query, page)
     }
 
-    fun getComics(id: Int, startYear: Int, limit: Int, orderBy: String) = performNetworkOperation {
-        remoteDataSource.getComics(id, startYear, limit, orderBy)
+    fun getComics(id: Int,startYear:Int) = performNetworkOperation {
+        remoteDataSource.getComics(id,startYear)
     }
 
 }

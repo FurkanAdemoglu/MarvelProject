@@ -7,4 +7,8 @@ object Constants {
     const val PUBLIC_API_KEY = "bbae1da54201d20a88cdf1751b125c09"
     const val PRIVATE_API_KEY = "5e6ab4dc30422c72dd59418d5555cb9d3c564e31"
     const val QUERY_PAGE_SIZE = 20
+
+    const val COMICS_LIMIT = 10
+    const val COMICS_START_DATE = "2005-01-01"
+    const val COMICS_ORDER_BY = "-onsaleDate"
 }

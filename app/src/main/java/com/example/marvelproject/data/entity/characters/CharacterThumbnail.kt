@@ -1,4 +1,4 @@
-package com.example.marvelproject.data.entity
+package com.example.marvelproject.data.entity.characters
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

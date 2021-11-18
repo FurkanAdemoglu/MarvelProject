@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvelproject.R
-import com.example.marvelproject.data.entity.CharacterData
 import com.example.marvelproject.data.entity.CharacterResults
 import kotlinx.android.synthetic.main.item_character.view.*
 

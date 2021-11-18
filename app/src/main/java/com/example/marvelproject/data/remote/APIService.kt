@@ -1,21 +1,13 @@
 package com.example.marvelproject.data.remote
 
-import com.example.marvelproject.data.entity.CharacterResponse
-import com.example.marvelproject.data.entity.Comics
-import com.example.marvelproject.utils.Constants.BASE_URL
-import com.example.marvelproject.utils.Constants.PUBLIC_API_KEY
-import com.example.marvelproject.utils.md5
-import com.google.gson.GsonBuilder
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import com.example.marvelproject.data.entity.characters.CharacterResponse
+import com.example.marvelproject.data.entity.comics.ComicsModel
+import com.example.marvelproject.utils.Constants
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.*
-import javax.crypto.Cipher.PRIVATE_KEY
 
 interface APIService {
 
@@ -26,11 +18,11 @@ interface APIService {
     ): Response<CharacterResponse>
 
 
-    @GET(value = "characters/{character_id}/comics")
+    @GET(value = "characters/{characterId}/comics")
     suspend fun getComics(
-        @Path("character_id") character_id: Int,
-        @Query("startYear") startYear: Int,
-        @Query("limit") limit: Int,
-        @Query("orderBy") orderBy: String
-    ): Response<Comics>
+        @Path("characterId") characterId: Int,
+       @Query("startYear") startYear: Int,
+        @Query("limit") limit: Int= Constants.COMICS_LIMIT,
+        @Query("orderBy") orderBy: String=Constants.COMICS_ORDER_BY
+    ): Response<ComicsModel>
 }

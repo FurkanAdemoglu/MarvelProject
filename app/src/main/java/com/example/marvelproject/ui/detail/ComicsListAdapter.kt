@@ -9,20 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.marvelproject.R
 import com.example.marvelproject.data.entity.CharacterResults
-import com.example.marvelproject.data.entity.Comics
-import com.example.marvelproject.data.entity.Item
+
+import com.example.marvelproject.data.entity.comics.ComicsResults
 import com.example.marvelproject.ui.list.CharacterListAdapter
 import kotlinx.android.synthetic.main.item_character.view.*
+import kotlinx.android.synthetic.main.item_comics.view.*
 
 class ComicsListAdapter : RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolder>() {
     inner class ComicsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private val differCallback = object : DiffUtil.ItemCallback<Item>() {
-        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-            return oldItem.name == newItem.name
+    private val differCallback = object : DiffUtil.ItemCallback<ComicsResults>() {
+        override fun areItemsTheSame(oldItem: ComicsResults, newItem: ComicsResults): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+        override fun areContentsTheSame(oldItem: ComicsResults, newItem: ComicsResults): Boolean {
             return oldItem == newItem
         }
     }
@@ -41,13 +42,10 @@ class ComicsListAdapter : RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolde
     override fun onBindViewHolder(holder: ComicsViewHolder, position: Int) {
         val comics = differ.currentList[position]
         holder.itemView.apply {
-            /*Glide.with(this)
+            Glide.with(this)
                 .load("${comics?.thumbnail?.path}.${comics?.thumbnail?.extension}")
-                .into(imageView)*/
-            characterName.text = comics.name
-            setOnClickListener {
-                onItemClickListener?.let { it(comics) }
-            }
+                .into(imgComic)
+            textComicName.text = comics.title
         }
     }
 
@@ -55,9 +53,5 @@ class ComicsListAdapter : RecyclerView.Adapter<ComicsListAdapter.ComicsViewHolde
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Item) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Item) -> Unit) {
-        onItemClickListener = listener
-    }
 }

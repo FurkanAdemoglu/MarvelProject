@@ -1,9 +1,7 @@
 package com.example.marvelproject.data.entity
 
-import android.os.Parcelable
+import com.example.marvelproject.data.entity.characters.CharacterThumbnail
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.IgnoredOnParcel
-import kotlinx.android.parcel.Parcelize
 
 
 data class CharacterResults(
@@ -19,6 +17,5 @@ data class CharacterResults(
     @SerializedName("thumbnail")
     var thumbnail: CharacterThumbnail,
 
-    @SerializedName("comics")
-    val comics: Comics,
+
 )
