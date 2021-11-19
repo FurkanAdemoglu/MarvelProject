@@ -65,7 +65,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(FragmentDetailBinding
             .load(args.image)
             .into(binding.imageView)
         binding.comicsRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.comicsRecyclerView.adapter = comicsListAdapter
     }
 
