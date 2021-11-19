@@ -19,3 +19,7 @@
 ![#000000](https://via.placeholder.com/15/000000/000000?text=+) Fragments
 
 ![#000000](https://via.placeholder.com/15/000000/000000?text=+) Glide
+
+## Application Flow
+
+![MarvelAppFlow](https://user-images.githubusercontent.com/52356960/142590761-84737444-562d-46d9-8348-aca9e1b4fbe7.gif)
